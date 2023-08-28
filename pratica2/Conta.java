@@ -22,4 +22,20 @@ public class Conta{
         System.out.println();
     }
 
+    public static void depositar(Conta c, double valor){
+        c.saldo = c.saldo + valor;
+        System.out.println("Valor depositado: " + valor);
+        System.out.println("Saldo atual: " + c.saldo);
+    }
+
+    public static void sacar(Conta c, double saque){
+        if(c.saldo > saque){
+            c.saldo = c.saldo - saque;
+            System.out.println("Valor sacado: " + saque);
+            System.out.println("Saldo atual: " + c.saldo);
+        }else{
+            return;
+        }
+    }
+
 }
