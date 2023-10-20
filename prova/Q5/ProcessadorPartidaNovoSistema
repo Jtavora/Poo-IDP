@@ -1,0 +1,28 @@
+public class ProcessadorPartidaNovoSistema extends ResultadoPartida {
+    @Override
+    public Pontuacao processarPontuacao(Partida partida) {
+        String nomeEquipe1 = partida.getNomeEquipe1();
+        String nomeEquipe2 = partida.getNomeEquipe2();
+        int numGolsEquipe1 = partida.getNumGolsEquipe1();
+        int numGolsEquipe2 = partida.getNumGolsEquipe2();
+
+        int pontuacaoEquipe1 = calcularPontuacaoEquipe(numGolsEquipe1, numGolsEquipe2);
+        int pontuacaoEquipe2 = calcularPontuacaoEquipe(numGolsEquipe2, numGolsEquipe1);
+
+        return new Pontuacao(nomeEquipe1, nomeEquipe2, pontuacaoEquipe1, pontuacaoEquipe2);
+    }
+
+    private int calcularPontuacaoEquipe(int golsMarcados, int golsSofridos) {
+        int diferencaGols = golsMarcados - golsSofridos;
+
+        if (diferencaGols >= 3) {
+            return 5; // Vitória por goleada
+        } else if (diferencaGols > 0) {
+            return 4; // Vitória normal
+        } else if (diferencaGols == 0) {
+            return 2; // Empate
+        } else {
+            return 1; // Derrota normal
+        }
+    }
+}
